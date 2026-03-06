@@ -1,48 +1,51 @@
-// ============================================================
-// 📅 SCHEDULE DATA — Edit this array to update the website!
-// ============================================================
-const scheduleData = [
-  {
-    day: "Tuesday",
-    time: "7:00 PM",
-    location: "Community Centre",
-    address: "35 Brant Ave, Brantford, ON",
-    host: "Patel Family",
-  },
-  {
-    day: "Thursday",
-    time: "7:00 PM",
-    location: "Sri Hanuman Mandir",
-    address: "120 King George Rd, Brantford, ON",
-    host: "Sharma Ji",
-  },
-  {
-    day: "Saturday",
-    time: "10:00 AM",
-    location: "Rotating — Check WhatsApp",
-    address: "Various locations in Brantford",
-    host: "",
-  },
-  {
-    day: "Sunday",
-    time: "6:00 PM",
-    location: "Temple Hall",
-    address: "55 Colborne St, Brantford, ON",
-    host: "Gupta Family",
-  },
-];
+"use client";
+
+import { useLanguage } from "@/i18n/LanguageContext";
 
 export default function Schedule() {
+  const { t } = useLanguage();
+
+  const scheduleData = [
+    {
+      day: t.schedule.tuesday,
+      time: "7:00 PM",
+      location: t.schedule.communityCenter,
+      address: "35 Brant Ave, Brantford, ON",
+      host: "Patel Family",
+    },
+    {
+      day: t.schedule.thursday,
+      time: "7:00 PM",
+      location: t.schedule.temple,
+      address: "120 King George Rd, Brantford, ON",
+      host: "Sharma Ji",
+    },
+    {
+      day: t.schedule.saturday,
+      time: "10:00 AM",
+      location: t.schedule.rotating,
+      address: "Various locations in Brantford",
+      host: "",
+    },
+    {
+      day: t.schedule.sunday,
+      time: "6:00 PM",
+      location: t.schedule.templeHall,
+      address: "55 Colborne St, Brantford, ON",
+      host: "Gupta Family",
+    },
+  ];
+
   return (
     <section id="schedule" className="py-20 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <span className="text-4xl mb-4 block">📅</span>
           <h2 className="font-serif text-3xl md:text-4xl font-bold text-saffron-800 mb-4">
-            Weekly Schedule
+            {t.schedule.heading}
           </h2>
           <p className="text-saffron-900/70 text-lg">
-            Join us at any of our recitation gatherings
+            {t.schedule.subtitle}
           </p>
         </div>
 
@@ -67,7 +70,7 @@ export default function Schedule() {
                   <p className="text-saffron-900/60 text-sm">{item.address}</p>
                   {item.host && (
                     <p className="text-saffron-700/70 text-sm mt-1">
-                      🏠 Hosted by {item.host}
+                      🏠 {t.schedule.hostedBy} {item.host}
                     </p>
                   )}
                 </div>
@@ -77,7 +80,7 @@ export default function Schedule() {
         </div>
 
         <p className="text-center text-saffron-900/50 text-sm mt-8">
-          Schedule may change — check our WhatsApp group for the latest updates
+          {t.schedule.disclaimer}
         </p>
       </div>
     </section>
