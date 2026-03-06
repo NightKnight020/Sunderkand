@@ -20,6 +20,7 @@ export default function Navbar() {
     { href: "#request", label: t.nav.schedule },
     { href: "#sunderkand", label: t.nav.sunderkand },
     { href: "/sunderkand-path", label: t.nav.sunderkandPath },
+    { href: "/hanuman-chalisa", label: t.nav.hanumanChalisa },
     { href: "#join", label: t.nav.joinUs },
   ];
 
