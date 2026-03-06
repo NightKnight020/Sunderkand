@@ -1,3 +1,6 @@
+"use client";
+
+import { LanguageProvider } from "@/i18n/LanguageContext";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Schedule from "@/components/Schedule";
@@ -9,15 +12,17 @@ import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
-    <main className="bg-warm-50 min-h-screen">
-      <Navbar />
-      <Hero />
-      <About />
-      <Schedule />
-      <WhatIsSunderkand />
-      <Instagram />
-      <JoinUs />
-      <Footer />
-    </main>
+    <LanguageProvider>
+      <main className="bg-warm-50 min-h-screen">
+        <Navbar />
+        <Hero />
+        <About />
+        <Schedule />
+        <WhatIsSunderkand />
+        <Instagram />
+        <JoinUs />
+        <Footer />
+      </main>
+    </LanguageProvider>
   );
 }
