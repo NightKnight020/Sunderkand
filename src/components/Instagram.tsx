@@ -1,25 +1,23 @@
+"use client";
+
+import { useLanguage } from "@/i18n/LanguageContext";
+
 export default function Instagram() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20 px-6 bg-white">
       <div className="max-w-4xl mx-auto text-center">
         <span className="text-4xl mb-4 block">🎥</span>
         <h2 className="font-serif text-3xl md:text-4xl font-bold text-saffron-800 mb-4">
-          Watch Our Recitations
+          {t.instagram.heading}
         </h2>
         <p className="text-saffron-900/70 text-lg mb-10">
-          Follow us on Instagram for videos, updates, and highlights
+          {t.instagram.subtitle}
         </p>
 
-        {/* Placeholder grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
-          {[
-            "Sunderkand Recitation — Jan 2025",
-            "Community Gathering",
-            "Aarti & Prasad",
-            "Hanuman Jayanti Special",
-            "New Year Recitation",
-            "Weekly Satsang Highlights",
-          ].map((title, i) => (
+          {t.instagram.posts.map((title, i) => (
             <div
               key={i}
               className="aspect-square bg-gradient-to-br from-saffron-100 to-saffron-200 rounded-xl flex items-center justify-center p-4 border border-saffron-200 hover:border-saffron-400 transition-colors cursor-pointer group"
@@ -54,7 +52,7 @@ export default function Instagram() {
               clipRule="evenodd"
             />
           </svg>
-          Follow @brantfordsunderkand
+          {t.instagram.followButton}
         </a>
       </div>
     </section>
