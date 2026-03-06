@@ -9,6 +9,7 @@ export const translations = {
       sunderkand: "Sunderkand",
       joinUs: "Join Us",
       sunderkandPath: "Sunderkand Path",
+      hanumanChalisa: "Hanuman Chalisa",
     },
     hero: {
       greeting: "Jai Shree Ram 🙏",
@@ -157,6 +158,7 @@ export const translations = {
       sunderkand: "सुंदरकांड",
       joinUs: "जुड़ें",
       sunderkandPath: "सुन्दरकाण्ड पाठ",
+      hanumanChalisa: "हनुमान चालीसा",
     },
     hero: {
       greeting: "जय श्री राम 🙏",
@@ -305,6 +307,7 @@ export const translations = {
       sunderkand: "સુંદરકાંડ",
       joinUs: "જોડાઓ",
       sunderkandPath: "સુંદરકાંડ પાઠ",
+      hanumanChalisa: "હનુમાન ચાલીસા",
     },
     hero: {
       greeting: "જય શ્રી રામ 🙏",
