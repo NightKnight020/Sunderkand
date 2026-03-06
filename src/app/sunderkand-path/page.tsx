@@ -3,7 +3,9 @@
 import { useState, useEffect } from "react";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
 
-const PDF_URL = "https://ia801201.us.archive.org/14/items/sunderkand-with-hindi-translation/Sunderkand-with-Hindi-Translation.pdf";
+const PDFS = {
+  gujarati: "/SundarkandGujarati.pdf",
+};
 
 function SunderkandContent() {
   const { t } = useLanguage();
@@ -55,7 +57,7 @@ function SunderkandContent() {
           {/* Download button */}
           <div className="flex justify-center mt-4">
             <a
-              href={PDF_URL}
+              href={PDFS.gujarati}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-saffron-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-saffron-700 transition-colors shadow-lg"
@@ -70,7 +72,7 @@ function SunderkandContent() {
       <div className="max-w-5xl mx-auto px-4 py-6">
         <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-saffron-100">
           <iframe
-            src={PDF_URL}
+            src={PDFS.gujarati}
             className="w-full border-0"
             style={{ height: "80vh", minHeight: "600px" }}
             title="Shri Sunderkand - Gita Press Gorakhpur"
