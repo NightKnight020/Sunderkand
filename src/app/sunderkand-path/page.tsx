@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { LanguageProvider, useLanguage } from "@/i18n/LanguageContext";
-import { sections, invocation } from "@/data/sunderkand-text";
+
+const PDF_URL = "https://ia801201.us.archive.org/14/items/sunderkand-with-hindi-translation/Sunderkand-with-Hindi-Translation.pdf";
 
 function SunderkandContent() {
   const { t } = useLanguage();
@@ -19,23 +20,23 @@ function SunderkandContent() {
     <div className="bg-warm-50 min-h-screen">
       {/* Header */}
       <div className="bg-gradient-to-b from-saffron-100 to-warm-50 pt-8 pb-6 px-4">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <a
             href="/"
             className="text-saffron-600 hover:text-saffron-800 text-sm font-medium transition-colors"
           >
-            {t.sunderkandPath.backHome}
+            ← Back to Home
           </a>
           <h1 className="font-serif text-3xl md:text-4xl font-bold text-saffron-800 mt-4 text-center">
-            {t.sunderkandPath.title}
+            श्री सुन्दरकाण्ड | Shri Sunderkand
           </h1>
-          <p className="text-saffron-700/70 text-center mt-2">
-            {t.sunderkandPath.subtitle}
+          <p className="text-saffron-700/80 text-center mt-2 max-w-2xl mx-auto" style={{ fontSize }}>
+            Complete Sunderkand from Shri Ramcharitmanas by Goswami Tulsidas, as published by Gita Press Gorakhpur
           </p>
 
           {/* Font size controls */}
           <div className="flex items-center justify-center gap-3 mt-4">
-            <span className="text-sm text-saffron-700">{t.sunderkandPath.fontSize}:</span>
+            <span className="text-sm text-saffron-700">Font Size:</span>
             <button
               onClick={() => setFontSize((s) => Math.max(14, s - 2))}
               className="w-8 h-8 rounded-full bg-saffron-200 text-saffron-800 font-bold hover:bg-saffron-300 transition-colors"
@@ -50,91 +51,45 @@ function SunderkandContent() {
               A+
             </button>
           </div>
+
+          {/* Download button */}
+          <div className="flex justify-center mt-4">
+            <a
+              href={PDF_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-saffron-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-saffron-700 transition-colors shadow-lg"
+            >
+              📥 Download PDF
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 py-6">
-        {/* Table of Contents */}
-        <details className="mb-8 bg-white rounded-2xl border border-saffron-100 shadow-sm">
-          <summary className="cursor-pointer px-6 py-4 font-serif text-lg font-semibold text-saffron-800 hover:bg-saffron-50 rounded-2xl transition-colors">
-            📖 {t.sunderkandPath.tableOfContents}
-          </summary>
-          <div className="px-6 pb-4 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
-            <a
-              href="#invocation"
-              className="text-center py-1.5 px-2 rounded-lg bg-saffron-50 text-saffron-700 text-sm hover:bg-saffron-100 transition-colors"
-            >
-              🙏
-            </a>
-            {sections.map((s) => (
-              <a
-                key={s.dohaNumber}
-                href={`#doha-${s.dohaNumber}`}
-                className="text-center py-1.5 px-2 rounded-lg bg-saffron-50 text-saffron-700 text-sm hover:bg-saffron-100 transition-colors"
-              >
-                {s.dohaNumber}
-              </a>
-            ))}
-          </div>
-        </details>
-
-        {/* Invocation */}
-        <div id="invocation" className="mb-8">
-          <div className="bg-gradient-to-br from-saffron-500 to-saffron-600 rounded-2xl p-6 md:p-8 text-white shadow-lg">
-            <h2 className="font-serif text-xl font-bold mb-4 text-center opacity-90">
-              ॥ {t.sunderkandPath.invocation} ॥
-            </h2>
-            <pre
-              className="whitespace-pre-wrap text-center leading-relaxed font-sans"
-              style={{ fontSize }}
-            >
-              {invocation}
-            </pre>
-          </div>
+      {/* PDF Viewer */}
+      <div className="max-w-5xl mx-auto px-4 py-6">
+        <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-saffron-100">
+          <iframe
+            src={PDF_URL}
+            className="w-full border-0"
+            style={{ height: "80vh", minHeight: "600px" }}
+            title="Shri Sunderkand - Gita Press Gorakhpur"
+          />
         </div>
 
-        {/* Sections */}
-        {sections.map((section) => (
-          <div key={section.dohaNumber} id={`doha-${section.dohaNumber}`} className="mb-6">
-            {section.verses.map((verse, vi) => (
-              <div
-                key={vi}
-                className={`mb-3 rounded-xl p-4 md:p-6 ${
-                  verse.type === "doha"
-                    ? "bg-gradient-to-r from-saffron-100 to-saffron-50 border-l-4 border-saffron-500"
-                    : "bg-white border border-saffron-100"
-                }`}
-              >
-                <div className="flex items-center gap-2 mb-2">
-                  <span
-                    className={`text-xs font-bold px-2 py-0.5 rounded-full ${
-                      verse.type === "doha"
-                        ? "bg-saffron-500 text-white"
-                        : "bg-saffron-200 text-saffron-700"
-                    }`}
-                  >
-                    {verse.type === "doha"
-                      ? `${t.sunderkandPath.doha} ${section.dohaNumber}`
-                      : t.sunderkandPath.chaupai}
-                  </span>
-                </div>
-                <pre
-                  className="whitespace-pre-wrap leading-relaxed text-saffron-900 font-sans"
-                  style={{ fontSize }}
-                >
-                  {verse.text}
-                </pre>
-              </div>
-            ))}
-          </div>
-        ))}
+        {/* Note */}
+        <div className="mt-6 bg-saffron-50 border border-saffron-200 rounded-xl p-4 text-center">
+          <p className="text-saffron-700 text-sm" style={{ fontSize: Math.max(14, fontSize - 4) }}>
+            📖 This text is sourced from Gita Press Gorakhpur publications. For the most authentic experience, we recommend using a physical copy of Shri Ramcharitmanas.
+          </p>
+        </div>
       </div>
 
       {/* Scroll to top */}
       {showScrollTop && (
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-saffron-500 text-white text-xl shadow-lg hover:bg-saffron-600 transition-all z-50"
+          className="fixed bottom-6 right-6 w-12 h-12 bg-saffron-600 text-white rounded-full shadow-lg hover:bg-saffron-700 transition-colors text-xl font-bold z-40"
           aria-label="Scroll to top"
         >
           ↑
